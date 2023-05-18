@@ -9,7 +9,7 @@ const squirrelController = require('../controllers/squirrel.js')
 
 router.get('/squirrel', squirrelController.getSquirrelsSightings)
 
-router.get('/squirrel/:squirrelid', squirrelController.getSquirrelById)
+router.get('/squirrel/:squirrelid', squirrelController.getSquirrelSightingsById)
 
 router.post('/squirrel', squirrelController.setSquirrelSighting)
 

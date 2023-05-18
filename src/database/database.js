@@ -3,10 +3,16 @@
     2.- Función para conectar a la Base de Datos usando mongoose.
 */
 const mongoose = require('mongoose')
+require('dotenv').config()
+
 const MONGO_URI = process.env.MONGO_URI
 
-exports.connect = () => {
-  mongoose.connect(MONGO_URI).then(() => {
+const options = {
+  dbName: 'Squirrels'
+}
+
+exports.connect = async () => {
+  await mongoose.connect(MONGO_URI, options).then(() => {
     console.log('Succesfully connected to database...')
   }).catch((error) => {
     console.log('Error while connecting. Terminating app...')

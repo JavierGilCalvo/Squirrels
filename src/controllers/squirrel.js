@@ -9,9 +9,9 @@ const { Squirrel, validate } = require('../models/squirrel')
 
 exports.getSquirrelsSightings = async (req, res) => {
   try {
-    const squirrels = Squirrel.find({}) // Getting all squirrels sightings
+    const squirrels = await Squirrel.find({}) // Getting all squirrels sightings
 
-    res.status(201).json({ message: 'Squirrels sightings obtained successfully...', data: squirrels })
+    res.status(201).send(squirrels)
   } catch (err) {
     console.log('Error while getting all the squirrels information...')
     console.error(err)
@@ -21,11 +21,11 @@ exports.getSquirrelsSightings = async (req, res) => {
 
 exports.getSquirrelSightingsById = async (req, res) => {
   try {
-    const { squirrelId } = req.params
-    const squirrelData = Squirrel.find({ 'Unique Squirrel ID': squirrelId }) // Getting all squirrels sightings with an squirrel ID
+    const { squirrelid } = req.params
+    const squirrelData = await Squirrel.find({ 'Unique Squirrel ID': squirrelid }) // Getting all squirrels sightings with an squirrel ID
 
     if (squirrelData) {
-      res.status(201).json({ message: `Successfully obtained squirrel data with id: ${squirrelId}`, data: squirrelData })
+      res.status(201).json({ message: `Successfully obtained squirrel data with id: ${squirrelid}`, data: squirrelData })
     }
     res.status(404).send('Squirrel not found...')
   } catch (err) {
